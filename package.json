@@ -1,0 +1,60 @@
+{
+  "name": "modern-node-starter",
+  "version": "1.1.1",
+  "description": "Quick and Easy NodeJS with Typescript Starter",
+  "author": "Sami Maxhuni <samimaxhuni510@gmail.com>",
+  "keywords": [
+    "typescript",
+    "express",
+    "routing-controllers",
+    "routing-controllers-openapi",
+    "sequelize",
+    "mongoose",
+    "typeorm",
+    "knex",
+    "prisma",
+    "querybuilder",
+    "jest",
+    "nodemon",
+    "jsonwebtoken",
+    "bcrypt",
+    "logs",
+    "winston",
+    "swagger",
+    "pm2",
+    "eslint",
+    "prettier",
+    "docker",
+    "docker-compose",
+    "nginx",
+    "huskyrc",
+    "mysql",
+    "mariadb",
+    "mongodb",
+    "postgresql"
+  ],
+  "license": "MIT",
+  "main": "bin/cli.js",
+  "bin": {
+    "samushi-node-starter": "bin/cli.js"
+  },
+  "scripts": {
+    "start": "node bin/cli.js"
+  },
+  "dependencies": {
+    "chalk": "^4.1.2",
+    "edit-json-file": "^1.6.0",
+    "gitignore": "^0.7.0",
+    "inquirer": "^8.1.2",
+    "ncp": "^2.0.0",
+    "ora": "^4.0.3"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/samushi/modern-node-starter"
+  },
+  "bugs": {
+    "url": "https://github.com/samushi/modern-node-starter/issues"
+  },
+  "homepage": "https://github.com/samushi/modern-node-starter"
+}
