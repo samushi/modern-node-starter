@@ -1,3 +1,8 @@
+/******************************* 
+ * Create new node project
+ * By Sami Maxhuni (Samushi) <samimaxhuni510@gmail.com>
+********************************/
+
 const Helpers = require('./helpers');
 const chalk = require("chalk");
 const { exec } = require("child_process");
