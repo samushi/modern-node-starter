@@ -61,8 +61,6 @@ It enforces a consistent style by parsing your code and re-printing it with its 
 
 <img src="https://user-images.githubusercontent.com/42952358/126604937-4ef50b61-b7e4-4635-b3c9-3c94dd6b06fa.png" alt="Formatter Setting" />
 
-> Palantir, the backers behind TSLint announced in 2019 that they would be deprecating TSLint in favor of supporting typescript-eslint in order to benefit the community.
-> So, migration from TSLint to ESLint.
 
 ## 📬 Please request an issue
 
