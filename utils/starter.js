@@ -31,7 +31,11 @@ module.exports = class Starter {
      */
     async start(projectName){
         try{
+
+            this.spinner = ora();
             const template = await this.chooseTemplates();
+
+
             const { isUpdated, isDeduped } = await this.setupModuleManagement();
 
             console.log("[ 1 / 3 ] 🔍  copying project...");
@@ -45,7 +49,6 @@ module.exports = class Starter {
             "\u001b[2m──────────────────────────────────────────\u001b[22m"
             );
 
-            this.spinner = ora();
             this.spinner.start();
 
             // manage node_modules
@@ -84,18 +87,31 @@ module.exports = class Starter {
      * @description Choose a template.
      */
     async chooseTemplates() {
+        let templateChoosed;
         const directories = await this.getTemplateDir();
 
-        const { chooseTemplates } = await inquirer.prompt([
-            {
-                type: "list",
-                name: "chooseTemplates",
-                message: "Please select the template you want",
-                choices: [...directories, new inquirer.Separator()],
-            },
-        ]);
+        if(directories.length === 0){
+            throw new Error("We dont have any repository");
+        }
+        
+        // Get first repository
+        templateChoosed = directories[0];
+
+        // if have more then one repository make choosable
+        if(directories.length > 1){
+          const { chooseTemplates } = await inquirer.prompt([
+              {
+                  type: "list",
+                  name: "chooseTemplates",
+                  message: "Please select the template you want",
+                  choices: [...directories, new inquirer.Separator()],
+              },
+          ]);
+          
+          templateChoosed = chooseTemplates;
+        }
     
-        return chooseTemplates;
+        return templateChoosed;
     }
 
     /**
@@ -225,7 +241,7 @@ module.exports = class Starter {
    * @description When the project is successful, the console is displayed.
    */
   async succeedConsole(template){
-    this.spinner.succeed(chalk`{green Complete setup project}`);
+    await this.spinner.succeed(chalk`{green Complete setup project}`);
   }
   
   /**
@@ -233,7 +249,6 @@ module.exports = class Starter {
    * @description When the project is fail, the console is displayed.
    */
   async failConsole(error){
-    this.spinner.fail(chalk`{red Please leave this error as an issue}`);
-    console.error(error);
+    await this.spinner.fail(chalk`{red ${error}}`);
   }
 }
