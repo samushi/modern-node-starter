@@ -7,7 +7,7 @@ const Helpers = require('./helpers');
 const chalk = require("chalk");
 const { exec } = require("child_process");
 const editJsonFile = require("edit-json-file");
-const { createWriteStream, readdir } = require("fs");
+const { createWriteStream, createReadStream, readdir } = require("fs");
 const { writeFile } = require("gitignore");
 const inquirer = require("inquirer");
 const { ncp } = require("ncp");
@@ -38,9 +38,16 @@ module.exports = class Starter {
         try{
 
             this.spinner = ora();
+
+            console.log(chalk.green(`
+███    ███  ██████  ██████  ███████ ██████  ███    ██     ███    ██  ██████  ██████  ███████     ███████ ████████  █████  ██████  ████████ ███████ ██████  
+████  ████ ██    ██ ██   ██ ██      ██   ██ ████   ██     ████   ██ ██    ██ ██   ██ ██          ██         ██    ██   ██ ██   ██    ██    ██      ██   ██ 
+██ ████ ██ ██    ██ ██   ██ █████   ██████  ██ ██  ██     ██ ██  ██ ██    ██ ██   ██ █████       ███████    ██    ███████ ██████     ██    █████   ██████  
+██  ██  ██ ██    ██ ██   ██ ██      ██   ██ ██  ██ ██     ██  ██ ██ ██    ██ ██   ██ ██               ██    ██    ██   ██ ██   ██    ██    ██      ██   ██ 
+██      ██  ██████  ██████  ███████ ██   ██ ██   ████     ██   ████  ██████  ██████  ███████     ███████    ██    ██   ██ ██   ██    ██    ███████ ██   ██ 
+`));
+
             const template = await this.chooseTemplates();
-
-
             const { isUpdated, isDeduped } = await this.setupModuleManagement();
 
             console.log("[ 1 / 3 ] 🔍  copying project...");
@@ -66,6 +73,7 @@ module.exports = class Starter {
             // set gitignore
             await this.createGitignore(projectName);
             await this.initGit(projectName);
+            await this.copyEnvExample(projectName);
 
             await this.succeedConsole(template);
 
@@ -232,6 +240,21 @@ module.exports = class Starter {
       file: file,
     });
   };
+
+   /**
+   * Copy example env to .env
+   * @param {*} destination
+   */
+    async copyEnvExample(destination) {
+      this.spinner.text = 'Copied .env file...';
+  
+      const source = createReadStream(path.join(destination, '.env.example'));
+      const dest = createWriteStream(path.join(destination, '.env'));
+  
+      source.pipe(dest);
+      //source.on('end', async () => await this.spinner.succeed(chalk`{green Env has been copied successfully}`));
+      //source.on('error', async () => await this.failConsole('Env has not been copied something is wrong'));
+    }
   
   /**
    * @method initGit
@@ -247,6 +270,17 @@ module.exports = class Starter {
    */
   async succeedConsole(template){
     await this.spinner.succeed(chalk`{green Complete setup project}`);
+    await this.spinner.stopAndPersist({
+      symbol: '🤝',
+      text: chalk`{rgb(255,131,0) You can start project in development stage:}
+
+      -----------------------
+      {green yarn dev} or {green npm run dev}
+      -----------------------
+
+      `
+    })
+
   }
   
   /**
