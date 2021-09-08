@@ -17,6 +17,9 @@ The package is configured to use TypeScript instead of JavaScript.
 
 > The project referred to [express-generator-typescript](https://github.com/seanpmaxwell/express-generator-typescript)
 
+[![IMAGE_ALT](https://img.youtube.com/vi/glF5iuWOfOU/sddefault.jpg)](https://www.youtube.com/watch?v=glF5iuWOfOU)
+
+
 ### 🤔 What is Express ?
 
 Express is a fast, open and concise web framework and is a Node.js based project.
