@@ -1,6 +1,6 @@
 {
   "name": "modern-node-starter",
-  "version": "1.2.3",
+  "version": "1.2.4",
   "description": "Quick and Easy NodeJS with Typescript Starter",
   "author": "Sami Maxhuni <samimaxhuni510@gmail.com>",
   "keywords": [
@@ -36,7 +36,7 @@
   "license": "MIT",
   "main": "bin/cli.js",
   "bin": {
-    "samushi-node-starter": "bin/cli.js"
+    "modern-node-starter": "bin/cli.js"
   },
   "scripts": {
     "start": "node bin/cli.js"
