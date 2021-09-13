@@ -1,6 +1,6 @@
 {
   "name": "modern-node-starter",
-  "version": "1.2.4",
+  "version": "1.2.5",
   "description": "Quick and Easy NodeJS with Typescript Starter",
   "author": "Sami Maxhuni <samimaxhuni510@gmail.com>",
   "keywords": [
@@ -39,7 +39,8 @@
     "modern-node-starter": "bin/cli.js"
   },
   "scripts": {
-    "start": "node bin/cli.js"
+    "start": "node bin/cli.js",
+    "postInstall": "husky install"
   },
   "dependencies": {
     "chalk": "^4.1.2",
@@ -56,5 +57,10 @@
   "bugs": {
     "url": "https://github.com/samushi/modern-node-starter/issues"
   },
-  "homepage": "https://github.com/samushi/modern-node-starter"
+  "homepage": "https://github.com/samushi/modern-node-starter",
+  "devDependencies": {
+    "@commitlint/cli": "^13.1.0",
+    "@commitlint/config-conventional": "^13.1.0",
+    "husky": "^7.0.2"
+  }
 }
