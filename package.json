@@ -40,7 +40,7 @@
   },
   "scripts": {
     "start": "node bin/cli.js",
-    "postInstall": "husky install"
+    "postinstall": "husky install"
   },
   "dependencies": {
     "chalk": "^4.1.2",
@@ -61,6 +61,7 @@
   "devDependencies": {
     "@commitlint/cli": "^13.1.0",
     "@commitlint/config-conventional": "^13.1.0",
+    "@rogerpence/edit-package-json": "^1.1.1",
     "husky": "^7.0.2"
   }
 }

@@ -49,6 +49,7 @@ module.exports = class Starter {
 
             const template = await this.chooseTemplates();
             const { isUpdated, isDeduped } = await this.setupModuleManagement();
+            const { withCommitLint } = await this.askIfWhantCommitLint();
 
             console.log("[ 1 / 3 ] 🔍  copying project...");
             console.log("[ 2 / 3 ] 🚚  fetching node_modules...");
@@ -68,12 +69,16 @@ module.exports = class Starter {
             isUpdated && (await this.updateNodeModules(projectName));
             isDeduped && (await this.dedupeNodeModules(projectName));
 
+            // Post Install
             await this.postInstallScripts(projectName, template);
 
             // set gitignore
             await this.createGitignore(projectName);
             await this.initGit(projectName);
             await this.copyEnvExample(projectName);
+
+            // Commitlint whant to install
+            withCommitLint && (await this.configureCommitLint(projectName));
 
             await this.succeedConsole(template);
 
@@ -241,11 +246,11 @@ module.exports = class Starter {
     });
   };
 
-   /**
-   * Copy example env to .env
-   * @param {*} destination
-   */
-    async copyEnvExample(destination) {
+  /**
+  * Copy example env to .env
+  * @param {*} destination
+  */
+  async copyEnvExample(destination) {
       this.spinner.text = 'Copied .env file...';
   
       const source = createReadStream(path.join(destination, '.env.example'));
@@ -254,7 +259,24 @@ module.exports = class Starter {
       source.pipe(dest);
       //source.on('end', async () => await this.spinner.succeed(chalk`{green Env has been copied successfully}`));
       //source.on('error', async () => await this.failConsole('Env has not been copied something is wrong'));
-    }
+  }
+
+  async askIfWhantCommitLint(){
+    return await inquirer.prompt([{
+          type: "confirm",
+          name: "withCommitLint",
+          message: "Install & configure Commitlint",
+    }]);
+  }
+
+  async configureCommitLint(destination){
+    this.spinner.text = "Initialized commitlint";
+    await asyncExec("npm install @commitlint/{cli,config-conventional} husky -D", { cwd: destination });
+    await asyncExec(`echo "module.exports = { extends: ['@commitlint/config-conventional'] };" > commitlint.config.js`, {cwd: destination});
+    await asyncExec(`npx husky install`, { cwd: destination });
+    await asyncExec(`npx husky add .husky/commit-msg "npx commitlint --edit $1"`, { cwd: destination });
+    await this.spinner.succeed(chalk`{green Commitlint has been configured}`);
+  }
   
   /**
    * @method initGit
