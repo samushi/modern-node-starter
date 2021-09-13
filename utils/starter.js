@@ -271,10 +271,14 @@ module.exports = class Starter {
 
   async configureCommitLint(destination){
     this.spinner.text = "Initialized commitlint";
+    await asyncExec(`npm i -D @rogerpence/edit-package-json`, {cwd: destination});
     await asyncExec("npm install @commitlint/{cli,config-conventional} husky -D", { cwd: destination });
     await asyncExec(`echo "module.exports = { extends: ['@commitlint/config-conventional'] };" > commitlint.config.js`, {cwd: destination});
     await asyncExec(`npx husky install`, { cwd: destination });
     await asyncExec(`npx husky add .husky/commit-msg "npx commitlint --edit $1"`, { cwd: destination });
+    await asyncExec(`npm i -D pinst`, {cwd: destination});
+    await asyncExec(`npx editpackagejson -k "prepublishOnly" -v "pinst --disable"`,{cwd: destination});
+    await asyncExec(`npx editpackagejson -k "postpublish" -v "pinst --enable"`,{cwd: destination});
     await this.spinner.succeed(chalk`{green Commitlint has been configured}`);
   }
   
