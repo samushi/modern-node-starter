@@ -1,0 +1,12 @@
+name: CI
+
+on: [push, pull_request]
+
+jobs:
+  start:
+      name: "Starting CLI"
+      runrs-on: ubuntu-latest
+      steps:
+        - uses: actions/checkout@v2
+        - uses: actions/setup-node@v16
+        - run: npm run start
