@@ -1,4 +1,3 @@
 .husky
 node_modules
-yarn.lock
 .npmrc

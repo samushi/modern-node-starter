@@ -7,7 +7,7 @@ jobs:
       name: "Starting CLI"
       runs-on: ubuntu-latest
       steps:
-        - uses: actions/checkout@v1
-        - uses: actions/setup-node@v1
-        - run: npm ci --ignore-scripts
-        - run: npm run start
+        - uses: actions/checkout@v2
+        - uses: actions/setup-node@v2
+        - run: yarn install
+        - run: yarn start
