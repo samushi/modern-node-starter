@@ -25,9 +25,9 @@ jobs:
         run: yarn install
 
       - name: 🏗 Publish npm
-        run: npm publish --access public
+        uses: JS-DevTools/npm-publish@v1
         env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_AUTH_TOKEN }}
+          token: ${{ secrets.NPM_AUTH_TOKEN }}
 
       - name: Send Notification to Discord
         uses: appleboy/discord-action@0.0.3
