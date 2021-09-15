@@ -27,7 +27,7 @@ jobs:
       - name: 🏗 Publish npm
         uses: JS-DevTools/npm-publish@v1
         env:
-          token: ${{ secrets.NPM_AUTH_TOKEN }}
+          token: ${{ secrets.NPM_TOKEN }}
 
       - name: Send Notification to Discord
         uses: appleboy/discord-action@0.0.3
