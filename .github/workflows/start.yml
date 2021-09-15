@@ -1,12 +1,6 @@
 name: npm publish
 
 on: [push, pull_request]
-# on:
-#   pull_request:
-#     branches:
-#       - main
-#     paths:
-#       - package.json
 
 jobs:
   build:
@@ -35,4 +29,4 @@ jobs:
           webhook_id: ${{ secrets.WEBHOOK_ID }}
           webhook_token: ${{ secrets.WEBHOOK_TOKEN }}
           color: "#48f442"
-          message: "(MODERN NODE STARTER) New update has been released"
+          message: New update has been released"
