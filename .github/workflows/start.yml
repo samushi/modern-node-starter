@@ -34,4 +34,5 @@ jobs:
         with:
           webhook_id: ${{ secrets.WEBHOOK_ID }}
           webhook_token: ${{ secrets.WEBHOOK_TOKEN }}
-          args: The ${{ github.event_name }} event triggered first step.
+          color: "#48f442"
+          message: "(MODERN NODE STARTER) New update has been released"
