@@ -26,7 +26,7 @@ jobs:
 
       - name: 🏗 Publish npm
         uses: JS-DevTools/npm-publish@v1
-        env:
+        with:
           token: ${{ secrets.NPM_TOKEN }}
 
       - name: Send Notification to Discord
