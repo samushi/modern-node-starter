@@ -31,4 +31,5 @@ jobs:
           username: ${{ secrets.BOT_NAME }}
           avatar_url: "https://www.npmjs.com/npm-avatar/eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdmF0YXJVUkwiOiJodHRwczovL3MuZ3JhdmF0YXIuY29tL2F2YXRhci8wZGU3ZjdlYTM2YWY4ZjZhNWZhMmFhNGVmMWM5Y2E0MT9zaXplPTQ5NiZkZWZhdWx0PXJldHJvIn0.JS8DMiSliZyXxLTzUxH0q8WWrUWCp0NLauq2FtvJit8" 
           color: "#48f442"
-          message: "@here New update has been released - https://www.npmjs.com/package/modern-node-starter :partying_face: :partying_face: :partying_face:"
+          args: @here
+          message: "New update has been released - https://www.npmjs.com/package/modern-node-starter :partying_face: :partying_face: :partying_face:"
