@@ -15,8 +15,6 @@ const ora = require("ora");
 const path = require("path");
 const { promisify } = require("util");
 
-const {program} = require('commander');
-
 const readDir = promisify(readdir);
 const asyncExec = promisify(exec);
 const writeGitignore = promisify(writeFile);
@@ -26,13 +24,10 @@ module.exports = class Starter {
     spinner = null;
     dirname = null;
 
-    constructor(){
-        const projectName = Helpers.getPath(process.argv[2]);
+    constructor(dir = 'modern-node-starter'){
+        const projectName = Helpers.getPath(dir);
         this.dirname = Helpers.getLibDir();
-
-        return program.version('1.3.3')
-               .description('Create your NodeJS easy and fast')
-               .action(this.start(projectName));
+        this.start(projectName);
     }
 
     /**
