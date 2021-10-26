@@ -36,7 +36,6 @@ module.exports = class Starter {
      */
     async start(projectName){
         try{
-
             this.spinner = ora();
 
             console.log(chalk.green(`

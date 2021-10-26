@@ -32,7 +32,7 @@ Express is a fast, open and concise web framework and is a Node.js based project
 $ npm install -g modern-node-starter
 ```
 
-### Run npx to Install The Package
+<!-- ### Run npx to Install The Package
 
 npx is a tool in the JavaScript package management module, npm.
 
@@ -42,6 +42,13 @@ If you do not enter a project name, it defaults to _modern-node-starter_.
 
 ```bash
 $ npx modern-node-starter "project name"
+``` -->
+
+### How to use
+```bash
+  $ modern-node-starter setup // for default setup
+  $ modern-node-starter setup --dir "directory name" // create setup in directory
+  $ modern-node-starter setup --dir . // create in current directory
 ```
 
 ### ✨ ESLint, Prettier :: Code Formatter
